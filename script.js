@@ -1,39 +1,33 @@
-const video = document.getElementById("video");
-const soundPicker = document.querySelectorAll(".sound-picker button");
-const timeButtons = document.querySelectorAll("#time-select button");
+const video = document.querySelector(".video");
+const audio = document.querySelector(".audio");
 const playButton = document.querySelector(".play");
 const timeDisplay = document.querySelector(".time-display");
+const timeButtons = document.querySelectorAll(".time-select button");
+const soundButtons = document.querySelectorAll(".sound-picker button");
 
-let fakeDuration = 600; // default 10 min
-let audio = new Audio("Sounds/beach.mp3");
+let fakeDuration = 600;
 
-// TIME SELECT BUTTONS
+// TIME SELECT
 timeButtons.forEach(btn => {
-    btn.addEventListener("click", function () {
-        fakeDuration = parseInt(this.getAttribute("data-time"));
-        let minutes = Math.floor(fakeDuration / 60);
-        timeDisplay.textContent = `${minutes}:0`;
+    btn.addEventListener("click", () => {
+        fakeDuration = btn.getAttribute("data-time");
+        timeDisplay.textContent = `${Math.floor(fakeDuration / 60)}:0`;
     });
 });
 
-// SOUND PICKER BUTTONS
-soundPicker.forEach(btn => {
-    btn.addEventListener("click", function () {
-
-        let soundSrc = this.getAttribute("data-sound");
-        let videoSrc = this.getAttribute("data-video");
-
-        audio.src = soundSrc;
-        video.src = videoSrc;
+// SOUND PICKER
+soundButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        audio.src = btn.getAttribute("data-sound");
+        video.src = btn.getAttribute("data-video");
 
         audio.play();
         video.play();
-
         playButton.textContent = "❚❚";
     });
 });
 
-// PLAY / PAUSE BUTTON
+// PLAY / PAUSE
 playButton.addEventListener("click", () => {
     if (audio.paused) {
         audio.play();
@@ -51,10 +45,10 @@ audio.ontimeupdate = () => {
     let currentTime = audio.currentTime;
     let remaining = fakeDuration - currentTime;
 
-    let minutes = Math.floor(remaining / 60);
-    let seconds = Math.floor(remaining % 60);
+    let mins = Math.floor(remaining / 60);
+    let secs = Math.floor(remaining % 60);
 
-    timeDisplay.textContent = `${minutes}:${seconds}`;
+    timeDisplay.textContent = `${mins}:${secs}`;
 
     if (remaining <= 0) {
         audio.pause();

@@ -2,71 +2,77 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-family: Arial, sans-serif;
 }
 
-/* Background Video */
 .vid-container video {
-    position: fixed;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    position: fixed;
 }
 
-/* Time buttons */
-#time-select {
+.app {
+    position: relative;
+}
+
+/* TIME SELECT AREA */
+.time-select {
     position: absolute;
-    left: 40px;
     top: 20%;
+    left: 30px;
+    z-index: 10;
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 50px;
 }
 
-#time-select button {
-    padding: 15px 30px;
+.time-select button {
+    padding: 20px 40px;
     border: 2px solid white;
     background: transparent;
     color: white;
-    font-size: 22px;
-    border-radius: 8px;
-    cursor: pointer;
+    font-size: 20px;
+    border-radius: 10px;
 }
 
+/* SOUND PICKER */
 .sound-picker {
     position: absolute;
-    right: 40px;
+    right: 30px;
     top: 20%;
+    z-index: 10;
     display: flex;
     flex-direction: column;
-    gap: 70px;
+    gap: 80px;
 }
 
 .sound-picker button {
+    color: white;
+    font-size: 45px;
     background: none;
     border: none;
-    cursor: pointer;
 }
 
+/* PLAYER CONTAINER */
 .player-container {
     position: absolute;
-    left: 50%;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
+    z-index: 20; /* ensure clickable */
 }
 
-/* Play button circle */
 .play {
-    font-size: 70px;
+    font-size: 80px;
+    color: white;
     background: none;
     border: none;
-    color: white;
     cursor: pointer;
 }
 
 .time-display {
-    color: white;
-    font-size: 48px;
     margin-top: 20px;
+    font-size: 50px;
+    color: white;
 }
